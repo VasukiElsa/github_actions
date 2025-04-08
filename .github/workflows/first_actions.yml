@@ -24,6 +24,11 @@ jobs:
     - name: Install dependencies
       run: go mod tidy
 
+    - name: Copy from the root directory
+      run: cp src/main.go .
+
     - name: Build
       run: go build -v ./...
-        
+
+    - name: Run
+      run: go run .
