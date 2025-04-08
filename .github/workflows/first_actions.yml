@@ -21,11 +21,17 @@ jobs:
     - name: Display Go version
       run: go version
 
-    - name: Install dependencies
-      run: go mod tidy
-
     - name: Copy from the root directory
       run: cp src/main.go .
+
+    - name: Initialize a go module (if not exists)
+      run: |
+        if [ ! -f go.mod ]; then
+          go mod init hello
+        fi
+
+    - name: Install dependencies
+      run: go mod tidy
 
     - name: Build
       run: go build -v ./...
